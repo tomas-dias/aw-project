@@ -47,7 +47,7 @@ paths:
                     format: int32
                   message:
                     type: string
-  /building/{id}:
+  /building/{building_id}:
     get:
       tags:
         - 'building'
@@ -55,7 +55,7 @@ paths:
       # description: 
       operationId: getBuilding
       parameters:
-        - name: id
+        - name: building_id
           in: path
           # description:
           required: true
@@ -159,15 +159,49 @@ paths:
                     format: int32
                   message:
                     type: string
-  /building/{id}/works:
+
+  /work:
+    post:
+      tags:
+        - 'work'
+      summary: Create work
+      #description
+      operationId: addWork
+      requestBody:
+      #description:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Work'
+      responses:
+        '200':
+          description: Work added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /work/{work_id}: 
     get:
       tags:
-        - "building"
+        - "work"
       summary: Get building maintenance works
       # description: 
       operationId: getWorks
       parameters:
-        - name: id
+        - name: work_id
           in: path
           # description:
           required: true
@@ -195,6 +229,215 @@ paths:
                     format: int32
                   message:
                     type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+    put:
+      tags:
+        - 'work'
+      summary: Update work
+      # description: 
+      operationId: updateWork
+      parameters:
+        - name: work_id
+          in: path
+          # description:
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Work updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+    delete:
+      tags:
+        - 'work'
+      summary: Delete work
+      # description: 
+      operationId: deleteWork
+      parameters:
+        - name: work_id
+          in: path
+          # description:
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: work deleted
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /feedback:
+    post:
+      tags:
+        - 'feedback'
+      summary: Create feedback
+      #description
+      operationId: addFeedback
+      requestBody:
+      #description:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '200':
+          description: Feedback added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /feedback/{feedback_id}: 
+    get:
+      tags:
+        - "feedback"
+      summary: Get feedback
+      # description: 
+      operationId: getFeedback
+      parameters:
+        - name: feedback_id
+          in: path
+          # description:
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Building maintenance feedback returned successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+        "404":
+          description: Feedback not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+    put:
+      tags:
+        - 'feedback'
+      summary: Update feedback
+      # description: 
+      operationId: updateFeedback
+      parameters:
+        - name: feedback_id
+          in: path
+          # description:
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Feedback updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+    delete:
+      tags:
+        - 'feedback'
+      summary: Delete feedback
+      # description: 
+      operationId: deleteFeedback
+      parameters:
+        - name: feedback_id
+          in: path
+          # description:
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: feedback deleted
         default:
           description: Unexpected error
           content:
@@ -248,7 +491,7 @@ paths:
       # description: 
       operationId: getUser
       parameters:
-        - name: id
+        - name: user_id
           in: path
           # description:
           required: true
@@ -295,7 +538,7 @@ paths:
       # description: 
       operationId: updateUser
       parameters:
-        - name: id
+        - name: user_id
           in: path
           # description:
           required: true
@@ -330,7 +573,7 @@ paths:
       # description: 
       operationId: deleteUser
       parameters:
-        - name: id
+        - name: user_id
           in: path
           # description:
           required: true
@@ -357,9 +600,15 @@ components:
     Feedback:
       type: object
       required:
-        - "id"
+        - "feedback_id"
       properties:
-        id:
+        feedback_id:
+          type: integer
+          format: int64
+        work_id:
+          type: integer
+          format: int64
+        user_id:
           type: integer
           format: int64
         author:
@@ -372,9 +621,12 @@ components:
     Work:
       type: object
       required:
-        - "id"
+        - "work_id"
       properties:
-        id:
+        work_id:
+          type: integer
+          format: int64
+        building_id:
           type: integer
           format: int64
         type:
@@ -408,19 +660,31 @@ components:
     Building:
       type: object
       required:
-        - id
+        - building_id
       properties:
-        id:
+        building_id:
           type: integer
           format: int64
+        name:
+          type: string
+        description:
+          type: string
         localization:
           type: string
+        problems:
+          type: array
+          items:
+            type: string
+        managers:
+          type: array
+          items:
+            type: string
     User:
       type: object
       required:
-        - id
+        - user_id
       properties:
-        id:
+        user_id:
           type: integer
           format: int64
         username:
