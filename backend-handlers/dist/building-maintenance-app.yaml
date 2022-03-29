@@ -483,7 +483,7 @@ paths:
                     format: int32
                   message:
                     type: string
-  /user/{id}:
+  /user/{user_id}:
     get:
       tags:
         - "user"
@@ -595,6 +595,55 @@ paths:
                     format: int32
                   message:
                     type: string
+  /user/login:
+    post:
+      tags:
+        - 'user'
+      summary: Logs user into the system
+      # description: 
+      operationId: userLogin
+      requestBody:
+        #description
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int32
+                  message:
+                    type: string
+  /user/logout:
+    get:
+      tags:
+        - "user"
+      summary: Logs out current logged in user session
+      #description
+      operationId: userLogout
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
 components:
   schemas:
     Feedback:
@@ -611,8 +660,6 @@ components:
         user_id:
           type: integer
           format: int64
-        author:
-          $ref: '#/components/schemas/User'
         date:
           type: string
           format: date-time
