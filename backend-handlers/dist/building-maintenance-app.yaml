@@ -102,7 +102,7 @@ paths:
       # description: 
       operationId: updateBuilding
       parameters:
-        - name: id
+        - name: building_id
           in: path
           # description:
           required: true
@@ -137,7 +137,7 @@ paths:
       # description: 
       operationId: deleteBuilding
       parameters:
-        - name: id
+        - name: building_id
           in: path
           # description:
           required: true

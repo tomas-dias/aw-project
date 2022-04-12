@@ -949,7 +949,7 @@
   },
   "components": {
     "schemas": {
-      "Feedback": {
+        "Feedback":{
         "type": "object",
         "required": [
           "feedback_id"
@@ -973,6 +973,12 @@
           },
           "content": {
             "type": "string"
+          },
+          "addressees": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -1019,13 +1025,47 @@
           "contractors": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "number"
+                },
+                "phone_number": {
+                  "type": "number"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "occupation": {
+                  "type": "string"
+                }
+              }
             }
           },
           "subcontractors": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "number"  
+                },
+                "phone_number": {
+                  "type": "number"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "occupation": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
@@ -1052,13 +1092,30 @@
           "problems": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "description": {
+                  "type": "string"
+                },
+                "work_id": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
             }
           },
           "managers": {
             "type": "array",
             "items": {
-              "type": "string"
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "supervisors": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
             }
           }
         }
@@ -1083,16 +1140,19 @@
             "type": "string",
             "format": "password"
           },
+          "phone_number": {
+            "type": "number"
+          },
           "role": {
             "type": "string",
             "enum": [
-              "inspector",
               "manager",
               "supervisor"
             ]
           }
         }
       }
+    
     }
   }
 }

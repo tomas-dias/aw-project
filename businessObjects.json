@@ -1,0 +1,205 @@
+{
+    "Feedback":{
+    "type": "object",
+    "required": [
+      "feedback_id"
+    ],
+    "properties": {
+      "feedback_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "work_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "user_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "date": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "content": {
+        "type": "string"
+      },
+      "addressees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "Work": {
+    "type": "object",
+    "required": [
+      "work_id"
+    ],
+    "properties": {
+      "work_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "building_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "type": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "startDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "finishDate": {
+        "type": "string",
+        "format": "date"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "closed",
+          "waiting",
+          "scheduled",
+          "opened",
+          "approved",
+          "rejected",
+          "closed"
+        ]
+      },
+      "contractors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            },
+            "phone_number": {
+              "type": "number"
+            },
+            "email": {
+              "type": "string"
+            },
+            "occupation": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "subcontractors": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"  
+            },
+            "phone_number": {
+              "type": "number"
+            },
+            "email": {
+              "type": "string"
+            },
+            "occupation": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Building": {
+    "type": "object",
+    "required": [
+      "building_id"
+    ],
+    "properties": {
+      "building_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "localization": {
+        "type": "string"
+      },
+      "problems": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "work_id": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "managers": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "supervisors": {
+        "type": "array",
+        "items": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    }
+  },
+  "User": {
+    "type": "object",
+    "required": [
+      "user_id"
+    ],
+    "properties": {
+      "user_id": {
+        "type": "integer",
+        "format": "int64"
+      },
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string",
+        "format": "password"
+      },
+      "phone_number": {
+        "type": "number"
+      },
+      "role": {
+        "type": "string",
+        "enum": [
+          "manager",
+          "supervisor"
+        ]
+      }
+    }
+  }
+}
