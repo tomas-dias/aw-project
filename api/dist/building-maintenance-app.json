@@ -1413,29 +1413,6 @@
                 }
               }
             }
-          },
-          "subcontractors": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "age": {
-                  "type": "number"  
-                },
-                "phone_number": {
-                  "type": "number"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "occupation": {
-                  "type": "string"
-                }
-              }
-            }
           }
         }
       },
@@ -1498,6 +1475,14 @@
           "user_id": {
             "type": "integer",
             "format": "int64"
+          },
+          "First name":
+          {
+            "type": "string"
+          },
+          "Last name":
+          {
+            "type": "string"
           },
           "username": {
             "type": "string"
