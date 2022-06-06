@@ -201,7 +201,7 @@
         "operationId": "updateBuilding",
         "parameters": [
           {
-            "name": "id",
+            "name": "building_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -269,7 +269,7 @@
         "operationId": "deleteBuilding",
         "parameters": [
           {
-            "name": "id",
+            "name": "building_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1426,7 +1426,7 @@
             "type": "integer",
             "format": "int64"
           },
-          "image_url": {
+          "image": {
             "type": "string",
             "format": "binary"
           },
@@ -1462,7 +1462,7 @@
             }
           },
           "supervisors": {
-            "type": "array",
+            "type": "array", 
             "items": {
               "type": "integer",
               "format": "int64"
@@ -1480,12 +1480,10 @@
             "type": "integer",
             "format": "int64"
           },
-          "First name":
-          {
+          "first_name": {
             "type": "string"
           },
-          "Last name":
-          {
+          "last_name": {
             "type": "string"
           },
           "username": {
@@ -1510,7 +1508,6 @@
           }
         }
       }
-    
     }
   }
 }
