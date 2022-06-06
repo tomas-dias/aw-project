@@ -1426,6 +1426,10 @@
             "type": "integer",
             "format": "int64"
           },
+          "image_url": {
+            "type": "string",
+            "format": "binary"
+          },
           "name": {
             "type": "string"
           },
