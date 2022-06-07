@@ -207,17 +207,40 @@
 					</div>
 				</div>
 				<div class="row mb-xl-6">
-					<div class="col-6">
+					<div class="col-3">
 						<div class="p-4 text-center bg-bg-2 text-dark-1">
-							Status
+									Status
 						</div>
 					</div>
-					<div class="col-6">
-						<div class="p-4 text-center bg-bg-2 text-dark-1">
-							Closed
+					<div class="col-9">
+						<select name="budget" class="form-select" required="required">
+							<option value="closed">
+										Closed
+							</option>
+							<option value="waiting">
+										Waiting
+							</option>
+							<option value="scheduled">
+										Scheduled
+							</option>
+							<option value="opened">
+										Opened
+							</option>
+							<option value="approved">
+										Approved
+							</option>
+							<option value="approved">
+										Rejected
+							</option>
+						</select>
+					</div>
+					<div class="p-4 col-12 d-xl-flex justify-content-xl-center">
+						<div class="row">
+							<a href="#" class="btn btn-action-1 w-20">
+								Update Status
+							</a>
 						</div>
 					</div>
-				</div>
 				<div class="mb-xl-6">
 					<div class="row">
 						<div class="col">

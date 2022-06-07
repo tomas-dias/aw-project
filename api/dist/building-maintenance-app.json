@@ -648,6 +648,89 @@
         }
       }
     },
+    "/work/{work_id}/updateStatus": {
+      "put": {
+        "tags": [
+          "work"
+        ],
+        "summary": "Update work status",
+        "operationId": "updateWorkStatus",
+        "parameters": [
+          {
+            "name": "work_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "closed",
+                      "waiting",
+                      "scheduled",
+                      "opened",
+                      "approved",
+                      "rejected"
+                    ]                    
+                  }
+                }
+              }
+            }
+          }
+        },        
+        "responses": {
+          "200": {
+            "description": "Work status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }      
+    },
     "/feedback": {
       "get": {
         "tags": [
