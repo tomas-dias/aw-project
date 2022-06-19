@@ -5,29 +5,26 @@
     "title": "Building Maintenance App"
   },
   "paths": {
-    "/building": {
-      "get": {
+    "/building": {      
+      "post": {
         "tags": [
           "building"
         ],
-        "summary": "Get list of buildings",
-        "operationId": "getBuildings",
-        "responses": {
-          "200": {
-            "description": "List of buildings returned successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Building"
-                  }
-                }
+        "summary": "Create building",
+        "operationId": "addBuilding",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Building"
               }
             }
-          },
-          "404": {
-            "description": "Building not found",
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Building added successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -65,26 +62,42 @@
             }
           }
         }
-      },      
-      "post": {
+      }
+    },
+    "/building/{user_id}": {
+      "get": {
         "tags": [
           "building"
         ],
-        "summary": "Create building",
-        "operationId": "addBuilding",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Building"
-              }
+        "summary": "Get list of buildings by user",
+        "operationId": "getBuildings",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Building added successfully",
+            "description": "List of buildings returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Building"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Building not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -385,10 +398,83 @@
           "work"
         ],
         "summary": "Get list of works by building",
-        "operationId": "getWorks",
+        "operationId": "getWorksByBuilding",
         "parameters": [
           {
             "name": "building_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of works returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Work"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Work not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/work/{user_id}": {
+      "get": {
+        "tags": [
+          "work"
+        ],
+        "summary": "Get list of works by user",
+        "operationId": "getWorksByUser",
+        "parameters": [
+          {
+            "name": "user_id",
             "in": "path",
             "required": true,
             "schema": {
@@ -732,28 +818,25 @@
       }      
     },
     "/feedback": {
-      "get": {
+      "post": {
         "tags": [
           "feedback"
         ],
-        "summary": "Get list of feedbacks",
-        "operationId": "getFeedbacks",
-        "responses": {
-          "200": {
-            "description": "List of feedbacks returned successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Feedback"
-                  }
-                }
+        "summary": "Create feedback",
+        "operationId": "addFeedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Feedback"
               }
             }
-          },
-          "404": {
-            "description": "Feedback not found",
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Feedback added successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -791,26 +874,42 @@
             }
           }
         }
-      }, 
-      "post": {
+      }
+    },
+    "/feedback/{work_id}": {
+      "get": {
         "tags": [
           "feedback"
         ],
-        "summary": "Create feedback",
-        "operationId": "addFeedback",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Feedback"
-              }
+        "summary": "Get list of feedbacks by work",
+        "operationId": "getFeedbacksByWork",
+        "parameters": [
+          {
+            "name": "work_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Feedback added successfully",
+            "description": "List of feedbacks returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feedback"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Feedback not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -1424,14 +1523,11 @@
             "type": "string",
             "format": "date-time"
           },
-          "content": {
+          "title": {
             "type": "string"
           },
-          "addressees": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "content": {
+            "type": "string"
           }
         }
       },
@@ -1538,7 +1634,7 @@
             }
           },
           "managers": {
-            "type": "array",
+            "type": "array",            
             "items": {
               "type": "integer",
               "format": "int64"
