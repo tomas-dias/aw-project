@@ -1,4 +1,4 @@
-# **Web Applications Final Project Directions**
+# **Web Applications Final Project Guidelines**
 
 ![Project Part 1](about/project-1.png?raw=true)
 
